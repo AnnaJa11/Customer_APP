@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 # Homepage view
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title='Customer Service App', navigation=[...], year=2024)
 
 # Raport view
 @app.route('/report')

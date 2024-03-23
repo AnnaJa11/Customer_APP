@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Service App</title>
-  <!-- CSS Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <!-- CSS Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-
 <body>
+    <header>
+        <h1>{{ title }}</h1>
+    </header>
+    
+    <nav>
+        <!-- <ul>
+            {% for item in navigation %}
+            <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+            {% endfor %}
+        </ul> -->
+    </nav>
+    
+    <main>
 
-<div class="container">
-  <h1>Customer Service app</h1>
-  <p>Landing page of the Customer Service App</p>
-  
-  <!-- Bootstrap component - button -->
-  <button type="button" class="btn btn-primary">GO!</button>
-  
-  <!-- variable from Flask in Jinja template -->
-  <p>{{ moja_zmienna }}</p>
-</div>
+      <!-- Add image from static/images -->
+       <img src="{{ url_for('static', filename='images/relations.png') }}" alt="Relations Image" width="50%" height="auto">
+        {% block content %}
+        <p>This is the default content.</p>
+        {% endblock %}
 
-<!--  JavaScript with Bootstrap (options, but can be important in some cases) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </main>
+    
+    <footer>
+        <p>&copy; {{ year }} My Website</p>
+    </footer>
+
+    
+
+    <!-- JavaScript with Bootstrap (options, but can be important in some cases) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
