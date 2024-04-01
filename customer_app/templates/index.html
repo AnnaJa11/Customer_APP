@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Strona główna</title>
-  <!-- Link do pliku CSS Bootstrap -->
+  <title>Homepage</title>
+  <!-- Link to Bootstrap CSS file -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container">
-  <h1>Strona główna</h1>
+  <h1>Homepage</h1>
   
-  <!-- Przycisk "add customer", który przekieruje użytkownika do szablonu add_customer.html -->
+  <!-- "Add Customer" button that redirects the user to the add_customer.html template -->
   <a href="{{ url_for('add_new_customer') }}" class="btn btn-primary">Add Customer</a>
   
-  <!-- Przycisk "report", który przekieruje użytkownika do szablonu report.html -->
+  <!-- "Report" button that redirects the user to the report.html template -->
   <a href="{{ url_for('show_report') }}" class="btn btn-primary">Report</a>
 </div>
 
-<!-- Skrypty JavaScript z Bootstrap (opcjonalne, ale mogą być potrzebne w niektórych przypadkach) -->
+<!-- Bootstrap JavaScript scripts (optional but may be needed in some cases) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

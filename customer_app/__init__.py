@@ -13,19 +13,19 @@ def index():
 # Report view
 @app.route('/report')
 def show_report():
-    # Retrieving customer data from the base
+    # Retrieving customer data from the database
     report_data = get_report_data()
-    print(report_data)  # Dodaj to
+    print(report_data)  # Add this
     return render_template('report.html', report_data=report_data)
 
-# Funkcja do generowania danych raportu
+# Function to generate report data
 def generate_report_data():
-    # Tworzymy instancję aplikacji obsługi klienta
+    # Create an instance of the customer service application
     app = CustomerServiceApp("database.db")
-    # Generujemy raport i zwracamy go
+    # Generate the report and return it
     return app.generate_report()
 
-# Widok do dodawania nowego klienta
+# View for adding a new customer
 @app.route('/add_customer', methods=['GET', 'POST'])
 def add_new_customer():
     if request.method == 'POST':
@@ -45,16 +45,16 @@ def add_new_customer():
             'comments': comments
         }
 
-        # Dodanie klienta do bazy danych
+        # Add the customer to the database
         add_customer(**customer_info)
 
-        # Po dodaniu klienta przekieruj użytkownika do strony raportu
+        # After adding the customer, redirect the user to the report page
         return redirect(url_for('show_report'))
     else:
-        # Jeśli dostęp jest za pomocą metody GET, po prostu wyświetl formularz
+        # If the access is via the GET method, simply display the form
         return render_template('add_customer.html')
 
-# Funkcja do pobierania danych klienta z bazy danych
+# Function to retrieve customer data from the database
 def get_report_data():
     session = Session()
     customers = session.query(Customer).all()

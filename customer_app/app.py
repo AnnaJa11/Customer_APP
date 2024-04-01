@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 class Customer:
     def __init__(self, name, phone, email, callback_date, comments, interested=None):
-        self.id = None  # Dodajemy atrybut id
+        self.id = None  # Add atribut id
         self.name = name
         self.phone = phone
         self.email = email
