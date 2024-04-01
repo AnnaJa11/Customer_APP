@@ -1,44 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <!-- CSS Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strona główna</title>
+  <!-- Link do pliku CSS Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <header>
-        <h1>{{ title }}</h1>
-    </header>
-    
-    <nav>
-        <!-- <ul>
-            {% for item in navigation %}
-            <li><a href="{{ item.url }}">{{ item.label }}</a></li>
-            {% endfor %}
-        </ul> -->
-    </nav>
-    
-    <main>
 
-      <!-- Add image from static/images -->
-       <img src="{{ url_for('static', filename='images/relations.png') }}" alt="Relations Image" width="50%" height="auto">
-        {% block content %}
-        <p>This is the default content.</p>
-        {% endblock %}
+<div class="container">
+  <h1>Strona główna</h1>
+  
+  <!-- Przycisk "add customer", który przekieruje użytkownika do szablonu add_customer.html -->
+  <a href="{{ url_for('add_new_customer') }}" class="btn btn-primary">Add Customer</a>
+  
+  <!-- Przycisk "report", który przekieruje użytkownika do szablonu report.html -->
+  <a href="{{ url_for('show_report') }}" class="btn btn-primary">Report</a>
+</div>
 
-    </main>
-    
-    <footer>
-        <p>&copy; {{ year }} My Website</p>
-    </footer>
-
-    
-
-    <!-- JavaScript with Bootstrap (options, but can be important in some cases) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Skrypty JavaScript z Bootstrap (opcjonalne, ale mogą być potrzebne w niektórych przypadkach) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

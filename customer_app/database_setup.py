@@ -13,9 +13,11 @@ class Customer(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    phone = Column(String)  # Add column phone
+    phone = Column(String)
     email = Column(String)
-    info = Column(Text)
+    interested = Column(String, default=None) 
+    callback_date = Column(String)
+    comments = Column(String)
 
 # Creating a table in the database
 Base.metadata.create_all(engine)
@@ -24,9 +26,9 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
 # A function to add customer data to the database
-def add_customer(customer_info):
+def add_customer(name, phone, email, interested, callback_date, comments):
     session = Session()
-    new_customer = Customer(**customer_info)
+    new_customer = Customer(name=name, phone=phone, email=email, interested=interested, callback_date=callback_date, comments=comments)
     session.add(new_customer)
     session.commit()
     session.close()

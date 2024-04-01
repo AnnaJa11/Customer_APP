@@ -13,27 +13,36 @@
         <h1 class="mb-4">Customer Service App</h1>
         
         <!-- Form to add new customers -->
-        <form id="addCustomerForm" class="border p-4 rounded-3 shadow">
+        <form id="addCustomerForm" class="border p-4 rounded-3 shadow" method="POST" action="/add_customer">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" required>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
             </div>
             <div class="mb-3">
                 <label for="interested" class="form-label">Interested</label>
-                <select class="form-select" id="interested" required>
+                <select class="form-select" id="interested" name="interested" required>
                     <option value="">Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
+                    <option value="Maybe">Maybe</option>
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="callback_date" class="form-label">Callback Date</label>
+                <input type="datetime-local" class="form-control" id="callback_date" name="callback_date" required>
+            </div>
+            <div class="mb-3">
+                <label for="comments" class="form-label">Comments</label>
+                <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="Enter details" required></textarea>
+            </div>            
             <button type="submit" class="btn btn-primary">Add Customer</button>
         </form>
     </div>

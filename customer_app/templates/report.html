@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Service App</title>
+   
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -16,7 +20,7 @@
         
         <!-- Table to display customer report -->
         <h2 class="mt-5">Customer Report</h2>
-        <table class="table">
+        <table id="customer-table" class="table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -24,10 +28,21 @@
                     <th>Email</th>
                     <th>Interested</th>
                     <th>Callback Date</th>
+                    <th>Comments</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Customer rows will be dynamically added here -->
+                {% for customer in report_data %}
+                <tr>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.phone }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.interested }}</td>
+                    <td>{{ customer.callback_date }}</td>
+                    <td>{{ customer.comments }}</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

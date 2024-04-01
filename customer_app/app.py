@@ -2,14 +2,15 @@ import sqlite3
 from datetime import datetime, timedelta
 
 class Customer:
-    def __init__(self, name, phone_number, email, interested=None):
+    def __init__(self, name, phone, email, callback_date, comments, interested=None):
         self.id = None  # Dodajemy atrybut id
         self.name = name
-        self.phone_number = phone_number
+        self.phone = phone
         self.email = email
         self.interested = interested
         self.interactions = []
-        self.callback_date = None
+        self.callback_date = callback_date
+        self.comments = comments
 
     def add_interaction(self, interaction):
         self.interactions.append(interaction)
@@ -37,7 +38,7 @@ class CustomerServiceApp:
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS customers (
                                     id INTEGER PRIMARY KEY,
                                     name TEXT,
-                                    phone_number TEXT,
+                                    phone TEXT,
                                     email TEXT,
                                     interested TEXT,
                                     callback_date TEXT
@@ -53,9 +54,9 @@ class CustomerServiceApp:
         self.connection.commit()
 
     def add_customer(self, customer):
-        self.cursor.execute('''INSERT INTO customers (name, phone_number, email, interested, callback_date)
+        self.cursor.execute('''INSERT INTO customers (name, phone, email, interested, callback_date)
                                VALUES (?, ?, ?, ?, ?)''',
-                               (customer.name, customer.phone_number, customer.email, customer.interested, customer.callback_date))
+                               (customer.name, customer.phone, customer.email, customer.interested, customer.callback_date))
         self.connection.commit()
         
         # Retrieve the id of the most recently added customer
@@ -111,31 +112,35 @@ class CustomerServiceApp:
 # Create an instance of the customer management application
 app = CustomerServiceApp("database.db")
 
-# Add customers
-customer1 = Customer("John Doe", "123-456-789", "john@example.com")
-customer2 = Customer("Jane Smith", "987-654-321", "jane@example.com")
-
-# Add customers to the database and save their IDs
-customer1_id = app.add_customer(customer1)
-customer2_id = app.add_customer(customer2)
-
-# We log interactions with customers using their IDs
-app.record_interaction(customer1_id, "2024-03-12", "Klient zainteresowany usługami transportowymi")
-app.record_interaction(customer2_id, "2024-03-13", "Klient niezainteresowany usługami transportowymi")
-
-# Marking customer interests
-app.update_interest(customer1_id, "Tak")
-app.update_interest(customer2_id, "Nie")
-
-# Scheduling follow-up calls with customers
-callback_date1 = datetime(2024, 3, 15, 10, 0)  # Example date and time
-callback_date2 = datetime(2024, 3, 16, 11, 30)  # Example date and time
-app.schedule_callback(customer1_id, callback_date1)
-app.schedule_callback(customer2_id, callback_date2)
-
-# Send notifications/reminders
-app.send_reminder(customer1)
-app.send_reminder(customer2)
 
 # Generate report
 app.generate_report()
+
+
+
+
+# # Add customers
+# customer1 = Customer("John Doe", "123-456-789", "john@example.com", "12-12-2024", "something bla bla")
+# customer2 = Customer("Jane Smith", "987-654-321", "jane@example.com", "12-12-2024", "something bla bla")
+
+# # Add customers to the database and save their IDs
+# customer1_id = app.add_customer(customer1)
+# customer2_id = app.add_customer(customer2)
+
+# # We log interactions with customers using their IDs
+# app.record_interaction(customer1_id, "2024-03-12", "Klient zainteresowany usługami transportowymi")
+# app.record_interaction(customer2_id, "2024-03-13", "Klient niezainteresowany usługami transportowymi")
+
+# # Marking customer interests
+# app.update_interest(customer1_id, "Tak")
+# app.update_interest(customer2_id, "Nie")
+
+# # Scheduling follow-up calls with customers
+# callback_date1 = datetime(2024, 3, 15, 10, 0)  # Example date and time
+# callback_date2 = datetime(2024, 3, 16, 11, 30)  # Example date and time
+# app.schedule_callback(customer1_id, callback_date1)
+# app.schedule_callback(customer2_id, callback_date2)
+
+# # Send notifications/reminders
+# app.send_reminder(customer1)
+# app.send_reminder(customer2)
