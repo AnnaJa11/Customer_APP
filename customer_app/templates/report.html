@@ -29,6 +29,7 @@
                     <th>Interested</th>
                     <th>Callback Date</th>
                     <th>Comments</th>
+                    <th>Actions</th> <!-- New column for actions -->
                 </tr>
             </thead>
             <tbody>
@@ -41,12 +42,14 @@
                     <td>{{ customer.interested }}</td>
                     <td>{{ customer.callback_date }}</td>
                     <td>{{ customer.comments }}</td>
+                    <td>
+                        <a href="/edit_customer/{{ customer.id }}" class="btn btn-primary">Edit</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

@@ -33,6 +33,22 @@ def add_customer(name, phone, email, interested, callback_date, comments):
     session.commit()
     session.close()
 
+# A function to edit customer data in the database
+def edit_customer(customer_id, name, phone, email, interested, callback_date, comments):
+    session = Session()
+    # Retrieve the customer to edit
+    customer = session.query(Customer).filter_by(id=customer_id).first()
+    # Update customer data
+    customer.name = name
+    customer.phone = phone
+    customer.email = email
+    customer.interested = interested
+    customer.callback_date = callback_date
+    customer.comments = comments
+    # Save changes to the database
+    session.commit()
+    session.close()
+
 # A function retrieving customer data from the database
 def get_report_data():
     session = Session()

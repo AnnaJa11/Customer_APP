@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from database_setup import add_customer, Customer, Session
-from app import CustomerServiceApp
+from database_setup import add_customer, edit_customer, Customer, Session, get_report_data
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -15,15 +14,7 @@ def index():
 def show_report():
     # Retrieving customer data from the database
     report_data = get_report_data()
-    print(report_data)  # Add this
     return render_template('report.html', report_data=report_data)
-
-# Function to generate report data
-def generate_report_data():
-    # Create an instance of the customer service application
-    app = CustomerServiceApp("database.db")
-    # Generate the report and return it
-    return app.generate_report()
 
 # View for adding a new customer
 @app.route('/add_customer', methods=['GET', 'POST'])
@@ -54,12 +45,24 @@ def add_new_customer():
         # If the access is via the GET method, simply display the form
         return render_template('add_customer.html')
 
-# Function to retrieve customer data from the database
-def get_report_data():
+# View for editing an existing customer
+@app.route('/edit_customer/<int:customer_id>', methods=['GET', 'POST'])
+def edit_customer_form(customer_id):
     session = Session()
-    customers = session.query(Customer).all()
+    customer = session.query(Customer).filter_by(id=customer_id).first()
+    if request.method == 'POST':
+        name = request.form['name']
+        phone = request.form['phone']
+        email = request.form['email']
+        interested = request.form['interested']
+        callback_date = request.form['callback_date']
+        comments = request.form['comments']
+        
+        edit_customer(customer_id, name, phone, email, interested, callback_date, comments)
+        session.close()
+        return redirect(url_for('show_report'))  # Redirect to customer report page
     session.close()
-    return customers
+    return render_template('edit_customer.html', customer=customer)
 
 if __name__ == '__main__':
     app.run(debug=True)
